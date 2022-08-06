@@ -137,9 +137,7 @@ public class UserFragment extends Fragment {
             }
         });
     }
-    /**
-     * 选择图片
-     */
+
     private void selectClick() {
         SQLiteDatabase db = helper.getWritableDatabase();
         PictureSelector.create(mActivity)
@@ -153,16 +151,13 @@ public class UserFragment extends Fragment {
                             // onResult Callback
                             LocalMedia media = result.get(i);
                             String path;
-                            // 压缩过,或者裁剪同时压缩过,以最终压缩过图片为准
                             boolean compressPath = media.isCompressed() || (media.isCut() && media.isCompressed());
-                            // 裁剪过
                             boolean isCutPath = media.isCut() && !media.isCompressed();
                             if (isCutPath) {
                                 path = media.getCutPath();
                             } else if (compressPath) {
                                 path = media.getCompressPath();
                             } else if (!TextUtils.isEmpty(media.getAndroidQToPath())) {
-                                // AndroidQ特有path
                                 path = media.getAndroidQToPath();
                             } else if (!TextUtils.isEmpty(media.getRealPath())) {
                                 // 原图

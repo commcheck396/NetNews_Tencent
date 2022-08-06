@@ -73,31 +73,21 @@ public class MainActivity extends Activity {
     }
 
     private void initView() {
-        //设置导航栏图标样式
-        Drawable iconNews=getResources().getDrawable(R.drawable.selector_main_rb_news);//设置主页图标样式
-        iconNews.setBounds(0,0,68,68);//设置图标边距 大小
-        rbNews.setCompoundDrawables(null,iconNews,null,null);//设置图标位置
-        rbNews.setCompoundDrawablePadding(5);//设置文字与图片的间距
-        Drawable iconUser=getResources().getDrawable(R.drawable.selector_main_rb_user);//设置主页图标样式
-        iconUser.setBounds(0,0,55,55);//设置图标边距 大小
-        rbUser.setCompoundDrawables(null,iconUser,null,null);//设置图标位置
-        rbUser.setCompoundDrawablePadding(5);//设置文字与图片的间距
+        Drawable iconNews=getResources().getDrawable(R.drawable.selector_main_rb_news);
+        iconNews.setBounds(0,0,68,68);
+        rbNews.setCompoundDrawables(null,iconNews,null,null);
+        rbNews.setCompoundDrawablePadding(5);
+        Drawable iconUser=getResources().getDrawable(R.drawable.selector_main_rb_user);
+        iconUser.setBounds(0,0,55,55);
+        rbUser.setCompoundDrawables(null,iconUser,null,null);
+        rbUser.setCompoundDrawablePadding(5);
         switchFragment(0);
         rbNews.setChecked(true);
     }
-    /**
-     * 方法 - 切换Fragment
-     *
-     * @param fragmentIndex 要显示Fragment的索引
-     */
-    private void switchFragment(int fragmentIndex) {
-        //在Activity中显示Fragment
-        //1、获取Fragment管理器 FragmentManager
-        FragmentManager fragmentManager = this.getFragmentManager();
-        //2、开启fragment事务
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-        //懒加载 - 如果需要显示的Fragment为null，就new。并添加到Fragment事务中
+    private void switchFragment(int fragmentIndex) {
+        FragmentManager fragmentManager = this.getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
         if (fragments[fragmentIndex] == null) {
             switch (fragmentIndex) {
                 case 0://NewsFragment
@@ -108,22 +98,16 @@ public class MainActivity extends Activity {
                     break;
             }
 
-            //==添加Fragment对象到Fragment事务中
-            //参数：显示Fragment的容器的ID，Fragment对象
             transaction.add(R.id.ll_main_content, fragments[fragmentIndex]);
         }
 
-        //隐藏其他的Fragment
         for (int i = 0; i < fragments.length; i++) {
             if (fragmentIndex != i && fragments[i] != null) {
-                //隐藏指定的Fragment
                 transaction.hide(fragments[i]);
             }
         }
-        //4、显示Fragment
         transaction.show(fragments[fragmentIndex]);
 
-        //5、提交事务
         transaction.commit();
     }
     /**

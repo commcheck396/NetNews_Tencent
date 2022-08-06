@@ -54,13 +54,10 @@ public class NewsDataAdapter extends RecyclerView.Adapter<NewsDataAdapter.ViewHo
         return list.size();
     }
     public void addItem(List<NewsDataBean> listAdd) {
-        //如果是加载第一页，需要先清空数据列表
         this.list.clear();
         if (listAdd!=null){
-            //添加数据
             this.list.addAll(listAdd);
         }
-        //通知RecyclerView进行改变--整体
         notifyDataSetChanged();
     }
     public class ViewHolder extends RecyclerView.ViewHolder {

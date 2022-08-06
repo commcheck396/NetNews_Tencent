@@ -26,7 +26,6 @@ public class OpenActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Integer userId = (Integer) SPUtils.get(OpenActivity.this,SPUtils.USER_ID,0);
-                //两秒后跳转到主页面
                 Intent intent2 = new Intent();
                 if (userId > 0) {
                     intent2.setClass(OpenActivity.this, MainActivity.class);

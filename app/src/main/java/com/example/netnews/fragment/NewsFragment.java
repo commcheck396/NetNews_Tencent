@@ -64,14 +64,9 @@ public class NewsFragment extends Fragment {
     private void initView() {
         loadTitle();
         LinearLayoutManager layoutManager = new LinearLayoutManager(myActivity);
-        //=1.2、设置为垂直排列，用setOrientation方法设置(默认为垂直布局)
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        //=1.3、设置recyclerView的布局管理器
         rvNewsList.setLayoutManager(layoutManager);
-        //==2、实例化适配器
-        //=2.1、初始化适配器
         mNewsAdapter = new NewsDataAdapter();
-        //=2.3、设置recyclerView的适配器
         rvNewsList.setAdapter(mNewsAdapter);
         tabTitle.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

@@ -64,7 +64,6 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 User mUser = null;
-                //通过账号查询用户是否存在
                 String sql = "select * from user where account = ?";
                 SQLiteDatabase db = helper.getWritableDatabase();
                 Cursor cursor = db.rawQuery(sql, new String[]{account});
